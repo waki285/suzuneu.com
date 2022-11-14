@@ -47,6 +47,7 @@ body {
 .socials {
   display: flex;
   justify-content: space-around;
+  margin-top: 0.5rem;
 }
 
 .tooltip {
