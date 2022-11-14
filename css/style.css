@@ -87,4 +87,9 @@ body {
   display: inline-block;
   top: -50px;
   left: -40px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
 }/*# sourceMappingURL=style.css.map */
