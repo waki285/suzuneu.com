@@ -55,14 +55,33 @@
       <!-- admax smartphone -->
       <script type="text/javascript">(admaxads = window.admaxads || []).push({admax_id: "94b8cd835ad3a0aa5ce7aea59ed08304",type: "overlay"});</script>
       <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
-      <!-- admax pc hidari -->
-      <div class="admax-ads" data-admax-id="e873c813468ea7ea54379b21179dd127" style="display:inline-block;width:160px;height:600px;position:fixed;left:1rem;"></div>
-      <script type="text/javascript">(admaxads = window.admaxads || []).push({admax_id: "e873c813468ea7ea54379b21179dd127",type: "banner"});</script>
-      <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
-      <!-- admax pc migi -->
-      <div class="admax-ads" data-admax-id="dd16ff173a11fcc0fc93d331249f5e78" style="display:inline-block;width:160px;height:600px;position:fixed;right:1rem;"></div>
-      <script type="text/javascript">(admaxads = window.admaxads || []).push({admax_id: "dd16ff173a11fcc0fc93d331249f5e78",type: "banner"});</script>
-      <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
+      <script>
+        if (screen.availWidth > 425) {
+          const admaxPcHidari = document.createComment("admax pc hidari");
+          const hidariDiv = document.createElement("div");
+          hidariDiv.classList.add("admax-ads");
+          hidariDiv.dataset.admaxId = "e873c813468ea7ea54379b21179dd127";
+          hidariDiv.style.cssText ="display:inline-block;width:160px;height:600px;position:fixed;left:1rem;"
+          const hidariScript = document.createElement("script");
+          hidariScript.type="text/javascript";
+          hidariScript.innerText = '(admaxads = window.admaxads || []).push({admax_id: "e873c813468ea7ea54379b21179dd127",type: "banner"});';
+          const stT = document.createElement("script");
+          stT.type="text/javascript";
+          stT.charset="utf-8";
+          stT.src="https://adm.shinobi.jp/st/t.js";
+          stT.async = true;
+          const admaxPcMigi = document.createComment("admax pc migi");
+          const migiDiv = document.createElement("div");
+          migiDiv.classList.add("admax-ads");
+          migiDiv.dataset.admaxId = "dd16ff173a11fcc0fc93d331249f5e78";
+          migiDiv.style.cssText ="display:inline-block;width:160px;height:600px;position:fixed;right:1rem;"
+          const migiScript = document.createElement("script");
+          migiScript.type="text/javascript";
+          migiScript.innerText = '(admaxads = window.admaxads || []).push({admax_id: "dd16ff173a11fcc0fc93d331249f5e78",type: "banner"});';
+          const root = document.getElementById("root");
+          root.append(admaxPcHidari, hidariDiv, hidariScript, admaxPcMigi, migiDiv, migiScript, stT);
+        }
+      </script>
       <!-- admax -->
     </div>
   </body>
