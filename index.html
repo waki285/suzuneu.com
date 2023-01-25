@@ -13,10 +13,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <div id="root">
+      <div id="root-splash">
       <div class="box animate__animated animate__fadeInUp">
         <div class="title">
           <h1>すずねーう</h1>
@@ -49,9 +51,7 @@
           </div>
         </div>
       </div>
-      <footer class="animate__animated animate__slideInUp">
-        <p>© 2022-2023 すずねーう All rights reserved.</p>
-      </footer>
+      <span class="material-symbols-rounded" style="font-size: 48px; position: absolute;bottom: 1rem;">expand_circle_down</span>
       <!-- admax smartphone -->
       <script type="text/javascript">(admaxads = window.admaxads || []).push({admax_id: "94b8cd835ad3a0aa5ce7aea59ed08304",type: "overlay"});</script>
       <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
@@ -61,7 +61,7 @@
           const hidariDiv = document.createElement("div");
           hidariDiv.classList.add("admax-ads");
           hidariDiv.dataset.admaxId = "e873c813468ea7ea54379b21179dd127";
-          hidariDiv.style.cssText ="display:inline-block;width:160px;height:600px;position:fixed;left:1rem;"
+          hidariDiv.style.cssText ="display:inline-block;width:160px;height:600px;position:absolute;left:1rem;"
           const hidariScript = document.createElement("script");
           hidariScript.type="text/javascript";
           hidariScript.innerText = '(admaxads = window.admaxads || []).push({admax_id: "e873c813468ea7ea54379b21179dd127",type: "banner"});';
@@ -74,15 +74,20 @@
           const migiDiv = document.createElement("div");
           migiDiv.classList.add("admax-ads");
           migiDiv.dataset.admaxId = "dd16ff173a11fcc0fc93d331249f5e78";
-          migiDiv.style.cssText ="display:inline-block;width:160px;height:600px;position:fixed;right:1rem;"
+          migiDiv.style.cssText ="display:inline-block;width:160px;height:600px;position:absolute;right:1rem;"
           const migiScript = document.createElement("script");
           migiScript.type="text/javascript";
           migiScript.innerText = '(admaxads = window.admaxads || []).push({admax_id: "dd16ff173a11fcc0fc93d331249f5e78",type: "banner"});';
-          const root = document.getElementById("root");
+          const root = document.getElementById("root-splash");
           root.append(admaxPcHidari, hidariDiv, hidariScript, admaxPcMigi, migiDiv, migiScript, stT);
         }
       </script>
       <!-- admax -->
     </div>
+    <div></div>
+    <footer class="animate__animated animate__slideInUp">
+      <p>© 2022-2023 すずねーう All rights reserved.</p>
+    </footer>
+  </div>
   </body>
 </html>
