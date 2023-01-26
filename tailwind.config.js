@@ -4,8 +4,6 @@ module.exports = {
   jit: true,
   theme: {
     extend: {
-      width: {
-      },
       height: {
         "dscreen": "100dvh",
       }

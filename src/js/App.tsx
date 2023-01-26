@@ -16,7 +16,7 @@ export default function App() {
       <div className="grid place-items-center h-dscreen relative bg-[rgb(194,144,228)] bg-[linear-gradient(120deg,_rgba(194,144,228,1)_0%,_rgba(130,211,222,1)_50%,_rgba(252,176,69,1)_100%)] bg-fixed">
         <div className="w-[400px] h-[500px] bg-white rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.2)] flex flex-col items-center animate__animated animate__fadeInUp">
           <div>
-            <h1 className="font-bold text-4xl">すずねーう</h1>
+            <h1 className="font-bold text-4xl my-4">すずねーう</h1>
           </div>
           <div>
             <div className="flex justify-center">
@@ -28,7 +28,7 @@ export default function App() {
               </A>
               <div className="relative cursor-pointer inline-block group">
                 <img src={Discord} width={30} alt="Discord" />
-                <span className="m-0 p-1 hidden absolute text-xs leading-6 text-white rounded bg-black w-24 before:absolute before:top-full before:content-[''] before:left-1/2 group-hover:before:border-solid group-hover:before:border-[15px] group-hover:before:border-transparent group-hover:before:border-t-black group-hover:before:ml-[-15px] group-hover:inline-block group-hover:top-[-50px] group-hover:left-[-40px]">すずねーう#8888</span>
+                <span className="m-0 p-1 hidden absolute text-xs leading-6 text-white rounded-lg bg-black before:absolute before:top-full before:content-[''] before:left-1/2 group-hover:before:border-solid group-hover:before:border-[15px] group-hover:before:border-transparent group-hover:before:border-t-black group-hover:before:ml-[-15px] group-hover:inline-block group-hover:top-[-50px] group-hover:left-[-40px] w-max">すずねーう#8888</span>
               </div>
             </div>
           </div>
