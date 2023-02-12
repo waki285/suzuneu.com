@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AdMax } from "./components/AdMax";
 import { MobileView, BrowserView } from "react-device-detect";
 
@@ -17,6 +17,7 @@ function A({ className, children, href }: { className?: string, children: React.
 
 export default function App() {
   const [animation, setAnimation] = useState(true);
+  const [animatedStop, setAnimatedStop] = useState<string[]>([]);
   const [wow, setWow] = useState(new WOW({
     live: false
   }));
@@ -45,11 +46,18 @@ export default function App() {
       }
     }
   }, []);
+  const animationIcon = useRef<HTMLButtonElement>(null);
   const changeAnimation = () => {
+    setAnimatedStop((s) => s.filter((v) => v !== "animationIcon"));
     if (animation) {
       localStorage.setItem("animation", "false");
       setAnimation(false);
       wow.stop();
+      const callback = () => {
+        setAnimatedStop((s) => s.filter((v) => v !== "animationIcon"));
+        animationIcon.current?.removeEventListener("animationend", callback);
+      }
+      animationIcon.current?.addEventListener("animationend", callback);
     } else {
       localStorage.setItem("animation", "true");
       setAnimation(true);
@@ -65,7 +73,6 @@ export default function App() {
       setDarkMode(true);
     }
   }
-  console.log(animation);
   return (
     <div className={`${darkMode ? "dark":""}`}>
       <header className="fixed top-0 w-full bg-transparent h-12 z-10">
@@ -75,7 +82,7 @@ export default function App() {
           </div>
           <div className="flex gap-4 text-xl settings">
             <button onClick={changeAnimation}>
-              <span className={`material-symbols-rounded ${animation ? "animate__animated animate__shakeX":"animate__animated animate__fadeOut"}`}>animation</span>
+              <span className={`material-symbols-rounded ${!animatedStop.includes("animationIcon") ? "":animation ? "animate__animated animate__shakeX":"animate__animated animate__fadeOut"}`} ref={animationIcon}>animation</span>
             </button>
             <button onClick={changeDarkMode}>
               <span className={`material-symbols-rounded ${darkMode ? "filled":""}`}>dark_mode</span>
