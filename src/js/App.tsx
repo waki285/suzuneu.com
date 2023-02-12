@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { AdMax } from "./components/AdMax";
 import { MobileView, BrowserView } from "react-device-detect";
 
@@ -6,8 +6,17 @@ import Icon from "../assets/icon.png";
 import Twitter from "../assets/twitter.png";
 import Discord from "../assets/discord.png";
 import GitHubLight from "../assets/githublight.png";
+import GitHubDark from "../assets/githubdark.png";
 import Mail from "../assets/mail.png";
 import WOW from "wow.js";
+
+import EN from "../locales/en";
+import JA from "../locales/ja";
+
+const LANG = {
+  en: EN,
+  ja: JA
+} as const;
 
 function A({ className, children, href }: { className?: string, children: React.ReactNode, href: string }) {
   return (
@@ -22,8 +31,15 @@ export default function App() {
     live: false
   }));
   const [darkMode, setDarkMode] = useState(false);
+  const [lang, setLang] = useState<keyof typeof LANG>("ja");
+  const [langMenu, setLangMenu] = useState(false);
+  const changeLangMenu = useCallback(() => {
+    setLangMenu((s) => !s);
+  }, []);
   useEffect(() => {
     wow.init();
+    // @ts-expect-error
+    window.gwow = wow;
     const an = localStorage.getItem("animation");
     if (an === "false") {
       setAnimation(false);
@@ -45,6 +61,9 @@ export default function App() {
         localStorage.setItem("darkMode", "false");
       }
     }
+    setLang(
+      (localStorage.getItem("lang") as keyof typeof LANG) || navigator.language.split("-")[0] as keyof typeof LANG === "en" ? "en":"ja"
+    )
   }, []);
   const animationIcon = useRef<HTMLButtonElement>(null);
   const changeAnimation = () => {
@@ -77,21 +96,44 @@ export default function App() {
     <div className={`${darkMode ? "dark":""}`}>
       <header className="fixed top-0 w-full bg-transparent h-12 z-10">
         <div className="flex justify-around items-center w-full h-full">
-          <p>すずねーう</p>
+          <p>{LANG[lang]["suzuneu"]}</p>
           <div className="flex gap-2">
           </div>
-          <div className="flex gap-4 text-xl settings">
+          <div className="flex gap-4 text-xl settings items-center">
             <button onClick={changeAnimation}>
               <span className={`material-symbols-rounded ${animatedStop.includes("animationIcon") ? "":animation ? "animate__animated animate__shakeX":"animate__animated animate__fadeOut"}`} ref={animationIcon}>animation</span>
             </button>
             <button onClick={changeDarkMode}>
-              <span className={`material-symbols-rounded ${darkMode ? "filled":""}`}>dark_mode</span>
+              <span className={`material-symbols-rounded ${darkMode ? "filled":""} transition-all duration-200 ease-in-out`}>dark_mode</span>
             </button>
+            <div className="flex flex-col items-stretch relative">
+              <button className="hover:bg-[#ffffff50] focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-50" onClick={changeLangMenu}>
+                <p>{LANG[lang]["meta"]["name"]} ({LANG[lang]["meta"]["slug"].toUpperCase()})</p>
+                <span className="material-symbols-rounded transition-all duration-200 ease-in-out">{langMenu ? "expand_less":"expand_more"}</span>
+              </button>
+              <div className={`z-20 absolute top-12 ${langMenu ? "block":"hidden"} rounded-lg bg-white dark:bg-gray-700 divide-y divide-gray-100`}>
+                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+                  {Object.keys(LANG).map((v) => (
+                    <li key={v} className="hover:bg-gray-100 dark:hover:bg-gray-600">
+                      <button onClick={() => {
+                        setLang(v as keyof typeof LANG);
+                        setLangMenu(false);
+                      }} className="block w-full px-4 py-2 text-left dark:hover:text-white">
+                        {LANG[v as keyof typeof LANG]["meta"]["name"]} ({LANG[v as keyof typeof LANG]["meta"]["slug"].toUpperCase()})
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </header>
       <main className="relative">
-        <div className="grid place-items-center h-dscreen relative bg-[rgb(194,144,228)] bg-[linear-gradient(120deg,_rgba(194,144,228,1)_0%,_rgba(130,211,222,1)_50%,_rgba(252,176,69,1)_100%)] bg-fixed">
+        { /* light bg-[linear-gradient(120deg,_rgba(194,144,228,1)_0%,_rgba(130,211,222,1)_50%,_rgba(252,176,69,1)_100%)] */ }
+        { /* linear-gradient(120deg, rgba(155,83,163,1) 0%, rgba(0,112,106,1) 50%, rgba(199,131,0,1) 100%); */ }
+        <div className="grid place-items-center h-dscreen relative bg-gradient-to-br from-purple-400 via-teal-300 to-amber-400  
+          dark:from-purple-600 dark:via-cyan-800 dark:to-amber-700  bg-fixed">
           <BrowserView className="absolute left-4">
             <AdMax id="e873c813468ea7ea54379b21179dd127" type="banner" size="160x600" />
           </BrowserView>
@@ -102,9 +144,9 @@ export default function App() {
             <AdMax id="41cbc3496969abfd577aebf2ca1c3e4e" type="banner" />
           </MobileView>
           {/*<AdMax id="94b8cd835ad3a0aa5ce7aea59ed08304" type="overlay" />*/}
-          <div className="w-[400px] h-[500px] bg-white rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.2)] flex flex-col items-center animate__animated animate__fadeInUp">
+          <div className="w-[400px] h-[500px] bg-white dark:bg-black dark:text-white rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.2)] flex flex-col items-center animate__animated animate__fadeInUp">
             <div>
-              <h1 className="font-bold text-4xl my-4">すずねーう</h1>
+              <h1 className="font-bold text-4xl my-4">{LANG[lang]["suzuneu"]}</h1>
             </div>
             <div className="w-full">
               <div className="flex justify-center">
@@ -116,16 +158,16 @@ export default function App() {
                 </A>
                 <div className="relative cursor-pointer inline-block group">
                   <img src={Discord} width={30} alt="Discord" />
-                  <span className="m-0 p-1 hidden absolute text-xs leading-6 text-white rounded-lg bg-black before:absolute before:top-full before:content-[''] before:left-1/2 group-hover:before:border-solid group-hover:before:border-[15px] group-hover:before:border-transparent group-hover:before:border-t-black group-hover:before:ml-[-15px] group-hover:inline-block group-hover:top-[-50px] group-hover:left-[-40px] w-max">すずねーう#8888</span>
+                  <span className="m-0 p-1 hidden absolute text-xs leading-6 text-white dark:text-black rounded-lg bg-black dark:bg-white before:absolute before:top-full before:content-[''] before:left-1/2 group-hover:before:border-solid group-hover:before:border-[15px] group-hover:before:border-transparent group-hover:before:border-t-black dark:group-hover:before:border-t-white group-hover:before:ml-[-15px] group-hover:inline-block group-hover:top-[-50px] group-hover:left-[-40px] w-max">すずねーう#8888</span>
                 </div>
                 <A href="https://github.com/waki285">
-                  <img src={GitHubLight} width={30} alt="GitHub" />
+                  <img src={darkMode ? GitHubDark:GitHubLight} width={30} alt="GitHub" />
                 </A>
                 <A href="mailto:suzuneu@suzuneu.com">
                   <img src={Mail} width={30} alt="Mail" />
                 </A>
               </div>
-              <p className="text-center font-bold my-4 text-red-500">偽物湧いてます気をつけてください プロフィールにGitHubの連携がある方が本物です</p>
+              <p className="text-center font-bold my-4 text-red-500">{LANG[lang]["spoofingwarn"]}</p>
               <div>
                 <p className="my-4 font-bold text-center">Services</p>
                 <ul className="my-4 list-disc ml-8">

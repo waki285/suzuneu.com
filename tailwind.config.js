@@ -7,8 +7,11 @@ module.exports = {
     extend: {
       height: {
         "dscreen": "100dvh",
-      }
+      },
     },
+    screens: {
+      "pc": "700px"
+    }
   },
   plugins: [],
 }
