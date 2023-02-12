@@ -17,7 +17,7 @@ function A({ className, children, href }: { className?: string, children: React.
 
 export default function App() {
   const [animation, setAnimation] = useState(true);
-  const [animatedStop, setAnimatedStop] = useState<string[]>([]);
+  const [animatedStop, setAnimatedStop] = useState<string[]>(["animationIcon"]);
   const [wow, setWow] = useState(new WOW({
     live: false
   }));
@@ -54,7 +54,7 @@ export default function App() {
       setAnimation(false);
       wow.stop();
       const callback = () => {
-        setAnimatedStop((s) => s.filter((v) => v !== "animationIcon"));
+        setAnimatedStop((s) => [...s, "animationIcon"]);
         animationIcon.current?.removeEventListener("animationend", callback);
       }
       animationIcon.current?.addEventListener("animationend", callback);
@@ -82,7 +82,7 @@ export default function App() {
           </div>
           <div className="flex gap-4 text-xl settings">
             <button onClick={changeAnimation}>
-              <span className={`material-symbols-rounded ${!animatedStop.includes("animationIcon") ? "":animation ? "animate__animated animate__shakeX":"animate__animated animate__fadeOut"}`} ref={animationIcon}>animation</span>
+              <span className={`material-symbols-rounded ${animatedStop.includes("animationIcon") ? "":animation ? "animate__animated animate__shakeX":"animate__animated animate__fadeOut"}`} ref={animationIcon}>animation</span>
             </button>
             <button onClick={changeDarkMode}>
               <span className={`material-symbols-rounded ${darkMode ? "filled":""}`}>dark_mode</span>
