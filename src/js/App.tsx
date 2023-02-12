@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AdMax } from "./components/AdMax";
 import { MobileView, BrowserView } from "react-device-detect";
 
@@ -16,13 +16,73 @@ function A({ className, children, href }: { className?: string, children: React.
 }
 
 export default function App() {
+  const [animation, setAnimation] = useState(true);
+  const [wow, setWow] = useState(new WOW({
+    live: false
+  }));
+  const [darkMode, setDarkMode] = useState(false);
   useEffect(() => {
-    new WOW({
-      live: false
-    }).init();
+    wow.init();
+    const an = localStorage.getItem("animation");
+    if (an === "false") {
+      setAnimation(false);
+      wow.stop();
+    } else {
+      if (an === null) {
+        localStorage.setItem("animation", "true");
+      }
+    }
+    const dm = localStorage.getItem("darkMode");
+    if (dm === "true") {
+      setDarkMode(true);
+    } else {
+      if (dm === null) {
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          setDarkMode(true);
+          localStorage.setItem("darkMode", "true");
+        }
+        localStorage.setItem("darkMode", "false");
+      }
+    }
   }, []);
+  const changeAnimation = () => {
+    if (animation) {
+      localStorage.setItem("animation", "false");
+      setAnimation(false);
+      wow.stop();
+    } else {
+      localStorage.setItem("animation", "true");
+      setAnimation(true);
+      wow.start();
+    }
+  }
+  const changeDarkMode = () => {
+    if (darkMode) {
+      localStorage.setItem("darkMode", "false");
+      setDarkMode(false);
+    } else {
+      localStorage.setItem("darkMode", "true");
+      setDarkMode(true);
+    }
+  }
+  console.log(animation);
   return (
-    <>
+    <div className={`${darkMode ? "dark":""}`}>
+      <header className="fixed top-0 w-full bg-transparent h-12 z-10">
+        <div className="flex justify-around items-center w-full h-full">
+          <p>すずねーう</p>
+          <div className="flex gap-2">
+          </div>
+          <div className="flex gap-4 text-xl settings">
+            <button onClick={changeAnimation}>
+              <span className={`material-symbols-rounded ${animation ? "animate__animated animate__shakeX":""}`}>animation</span>
+            </button>
+            <button onClick={changeDarkMode}>
+              <span className={`material-symbols-rounded ${darkMode ? "filled":""}`}>dark_mode</span>
+            </button>
+          </div>
+        </div>
+      </header>
       <main className="relative">
         <div className="grid place-items-center h-dscreen relative bg-[rgb(194,144,228)] bg-[linear-gradient(120deg,_rgba(194,144,228,1)_0%,_rgba(130,211,222,1)_50%,_rgba(252,176,69,1)_100%)] bg-fixed">
           <BrowserView className="absolute left-4">
@@ -65,15 +125,16 @@ export default function App() {
                   <li><A href="https://suzuneu.com">suzuneu.com</A></li>
                   <li><A href="https://pastedeck.suzuneu.com">Pastedeck</A></li>
                   <li><A href="https://miq.suzuneu.com">MakeItAQuote Discord</A></li>
+                  <li><A href="https://rdtools.suzuneu.com">Random Dice Tools</A></li>
                 </ul>
               </div>
             </div>
           </div>
           <span className="material-symbols-rounded text-5xl absolute bottom-4">expand_circle_down</span>
         </div>
-        <div className="wow animate__animated animate__fadeInLeft">Wow!</div>
+        <div className="mt-80 wow animate__animated animate__fadeInLeft">Wow!</div>
         <footer className="text-center absolute bottom-2">©2023 suzuneu All rights reserved.</footer>
       </main>
-    </>
+    </div>
   );
 };

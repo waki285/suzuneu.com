@@ -6,12 +6,15 @@ const tailwindcss = require("tailwindcss");
 const TailwindSettings = require("./tailwind.config.js");
 const postcssPresetEnv = require("postcss-preset-env");
 
+const isDev = process.argv.includes("--dev") || process.env.NODE_ENV === "development";
+
 (async () => {
   const ctx = await context({
     entryPoints: ["src/js/client.tsx"],
     bundle: true,
-    minify: true,
-    sourcemap: "inline",
+    minify: isDev,
+    sourcemap: isDev ? "linked":false,
+    legalComments: "none",
     target: "ES2021",
     outdir: "dist",
     platform: "browser",
@@ -26,7 +29,7 @@ const postcssPresetEnv = require("postcss-preset-env");
         type: "style",
         filter: /\.s(c|a)ss$/,
         async transform(source, resolveDir) {
-          const { css } = await postcss([tailwindcss(TailwindSettings), require("autoprefixer"), postcssPresetEnv]).process(source, { from: undefined });
+          const { css } = await postcss([tailwindcss(TailwindSettings), require("autoprefixer"), require("cssnano"), postcssPresetEnv]).process(source, { from: undefined });
           return css;
         }
       }),
@@ -37,15 +40,17 @@ const postcssPresetEnv = require("postcss-preset-env");
           { from: "public/**/*", to: "dist/" }
         ]
       }),
-      {
-        name: 'on-end',
-        setup(build) {
-          build.onEnd((result) => {
-          })
-        }
-      }
     ]
   });
+
+  process.on("beforeExit", () => {
+    ctx.dispose();
+  });
+
+  if (!isDev) {
+    await ctx.rebuild();
+    process.exit(0);
+  }
 
   await ctx.watch();
   const { host, port } = await ctx.serve({

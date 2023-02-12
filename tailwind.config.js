@@ -2,6 +2,7 @@
 module.exports = {
   content: ["./src/js/**/*.tsx"],
   jit: true,
+  darkMode: "class",
   theme: {
     extend: {
       height: {

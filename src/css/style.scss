@@ -15,10 +15,20 @@
   'GRAD' 0,
   'opsz' 48;
   user-select: none;
+  &.filled {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+  }
 }
 
 html,
 body {
-  height: 100%;
-  margin: 0;
+  @apply h-full m-0;
+}
+
+.settings > button {
+  @apply w-8 h-8 grid place-items-center hover:bg-[#f8f8f850] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 rounded;
 }
