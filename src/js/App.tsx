@@ -75,7 +75,7 @@ export default function App() {
           </div>
           <div className="flex gap-4 text-xl settings">
             <button onClick={changeAnimation}>
-              <span className={`material-symbols-rounded ${animation ? "animate__animated animate__shakeX":""}`}>animation</span>
+              <span className={`material-symbols-rounded ${animation ? "animate__animated animate__shakeX":"animate__animated animate__fadeOut"}`}>animation</span>
             </button>
             <button onClick={changeDarkMode}>
               <span className={`material-symbols-rounded ${darkMode ? "filled":""}`}>dark_mode</span>
