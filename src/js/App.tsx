@@ -102,7 +102,7 @@ export default function App() {
           <div className="flex gap-2">
           </div>
           <div className="flex gap-4 text-xl settings items-center">
-            <button onClick={changeAnimation} className={`relative ${!animation ? "before:content-[''] before:absolute before:rotate-45 before:bg-red-600 w-12 h-px":""}`}>
+            <button onClick={changeAnimation} className={`relative ${!animation ? "before:content-[''] before:absolute before:rotate-45 before:bg-red-600 before:w-12 before:h-px":""}`}>
               <span className={`material-symbols-rounded ${animatedStop.includes("animationIcon") ? "":animation ? "animate__animated animate__shakeX":"animate__animated animate__fadeOut"}`} ref={animationIcon}>animation</span>
             </button>
             <button onClick={changeDarkMode}>
