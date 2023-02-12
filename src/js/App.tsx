@@ -96,7 +96,7 @@ export default function App() {
   }
   return (
     <div className={`${darkMode ? "dark":""}`}>
-      <header className="fixed top-0 w-full bg-transparent h-12 z-10">
+      <header className="fixed top-0 w-full bg-transparent h-12 z-50 font-serif">
         <div className="flex justify-around items-center w-full h-full">
           <p>{LANG[lang]["suzuneu"]}</p>
           <div className="flex gap-2">
@@ -135,7 +135,7 @@ export default function App() {
         { /* light bg-[linear-gradient(120deg,_rgba(194,144,228,1)_0%,_rgba(130,211,222,1)_50%,_rgba(252,176,69,1)_100%)] */ }
         { /* linear-gradient(120deg, rgba(155,83,163,1) 0%, rgba(0,112,106,1) 50%, rgba(199,131,0,1) 100%); */ }
         <div className="grid place-items-center h-dscreen relative bg-gradient-to-br from-purple-400 via-teal-300 to-amber-400  
-          dark:from-purple-600 dark:via-cyan-800 dark:to-amber-700  bg-fixed">
+          dark:from-purple-600 dark:via-cyan-800 dark:to-amber-700 bg-fixed font-serif">
           <BrowserView className="absolute left-4">
             <AdMax id="e873c813468ea7ea54379b21179dd127" type="banner" size="160x600" />
           </BrowserView>
@@ -183,8 +183,16 @@ export default function App() {
           </div>
           <span className="material-symbols-rounded text-5xl absolute bottom-4">expand_circle_down</span>
         </div>
-        <div className="mt-80 wow animate__animated animate__fadeInLeft">Wow!</div>
-        <footer className="text-center absolute bottom-2">©2023 suzuneu All rights reserved.</footer>
+        <div className="mt-10"></div>
+        <div className="relative">
+          <section className="absolute left-4 wow animate__animated animate__slideInLeft">
+            <div className="relative max-w-md">
+              <h1 className="font-title text-4xl whitespace-nowrap">{LANG[lang].d["makeTitle"]}</h1>
+              <div className="font-sans text-lg">{LANG[lang].d["makeDesc"]}</div>
+            </div>
+          </section>
+        </div>
+        <footer className="text-center absolute bottom-2 font-serif">©2023 suzuneu All rights reserved.</footer>
       </main>
     </div>
   );

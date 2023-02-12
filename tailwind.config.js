@@ -9,6 +9,11 @@ module.exports = {
         "dscreen": "100dvh",
       },
     },
+    fontFamily: {
+      serif: ["Lora", '"Kiwi Maru"', "serif"],
+      sans: ['Lato', '"M PLUS 1"', "sans-serif"],
+      title: ['"Abril Fatface"', '"Zen Antique Soft"', "cursive", "sans-serif"],
+    },
     screens: {
       "pc": "700px"
     }

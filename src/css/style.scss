@@ -4,9 +4,7 @@
 @use "tailwindcss/components";
 @use "tailwindcss/utilities";
 
-* {
-  font-family: 'Kiwi Maru', sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Kiwi+Maru&family=Lato:ital@0;1&family=Lora&family=M+PLUS+1&family=Zen+Antique+Soft&display=swap');
 
 .material-symbols-rounded {
   font-variation-settings:
