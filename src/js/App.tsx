@@ -44,6 +44,7 @@ export default function App() {
     if (an === "false") {
       setAnimation(false);
       wow.stop();
+      wow.resetStyle();
     } else {
       if (an === null) {
         localStorage.setItem("animation", "true");
@@ -72,6 +73,7 @@ export default function App() {
       localStorage.setItem("animation", "false");
       setAnimation(false);
       wow.stop();
+      wow.resetStyle();
       const callback = () => {
         setAnimatedStop((s) => [...s, "animationIcon"]);
         animationIcon.current?.removeEventListener("animationend", callback);
@@ -100,7 +102,7 @@ export default function App() {
           <div className="flex gap-2">
           </div>
           <div className="flex gap-4 text-xl settings items-center">
-            <button onClick={changeAnimation}>
+            <button onClick={changeAnimation} className={`relative ${!animation ? "before:content-[''] before:absolute before:rotate-45 before:bg-red-600 w-12 h-px":""}`}>
               <span className={`material-symbols-rounded ${animatedStop.includes("animationIcon") ? "":animation ? "animate__animated animate__shakeX":"animate__animated animate__fadeOut"}`} ref={animationIcon}>animation</span>
             </button>
             <button onClick={changeDarkMode}>
@@ -140,7 +142,7 @@ export default function App() {
           <BrowserView className="absolute right-4">
             <AdMax id="dd16ff173a11fcc0fc93d331249f5e78" type="banner" size="160x600" />
           </BrowserView>
-          <MobileView className="absolute top-4">
+          <MobileView className="absolute top-16">
             <AdMax id="41cbc3496969abfd577aebf2ca1c3e4e" type="banner" />
           </MobileView>
           {/*<AdMax id="94b8cd835ad3a0aa5ce7aea59ed08304" type="overlay" />*/}
