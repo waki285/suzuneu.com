@@ -2,12 +2,12 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { AdMax } from "./components/AdMax";
 import { MobileView, BrowserView } from "react-device-detect";
 
-import Icon from "../assets/icon.png";
-import Twitter from "../assets/twitter.png";
-import Discord from "../assets/discord.png";
-import GitHubLight from "../assets/githublight.png";
-import GitHubDark from "../assets/githubdark.png";
-import Mail from "../assets/mail.png";
+import Icon from "../assets/icon.webp";
+import Twitter from "../assets/twitter.webp";
+import Discord from "../assets/discord.webp";
+import GitHubLight from "../assets/githublight.webp";
+import GitHubDark from "../assets/githubdark.webp";
+import Mail from "../assets/mail.webp";
 import WOW from "wow.js";
 
 import EN from "../locales/en";
@@ -95,7 +95,7 @@ export default function App() {
     }
   }
   return (
-    <div className={`${darkMode ? "dark":""}`}>
+    <div className={`${darkMode ? "dark":""} relative`}>
       <header className="fixed top-0 w-full bg-transparent h-12 z-50 font-serif">
         <div className="flex justify-around items-center w-full h-full">
           <p>{LANG[lang]["suzuneu"]}</p>
@@ -183,17 +183,16 @@ export default function App() {
           </div>
           <span className="material-symbols-rounded text-5xl absolute bottom-4">expand_circle_down</span>
         </div>
-        <div className="mt-10"></div>
-        <div className="relative">
-          <section className="absolute left-4 wow animate__animated animate__slideInLeft">
-            <div className="relative max-w-md">
-              <h1 className="font-title text-4xl whitespace-nowrap">{LANG[lang].d["makeTitle"]}</h1>
-              <div className="font-sans text-lg">{LANG[lang].d["makeDesc"]}</div>
-            </div>
-          </section>
-        </div>
-        <footer className="text-center absolute bottom-2 font-serif">©2023 suzuneu All rights reserved.</footer>
       </main>
+      <div className="my-12">
+        <section className="ml-12 wow animate__animated animate__slideInLeft">
+          <div className="relative max-w-md">
+            <h1 className="font-title text-4xl whitespace-nowrap">{LANG[lang].d["makeTitle"]}</h1>
+            <div className="font-sans text-lg">{LANG[lang].d["makeDesc"]}</div>
+          </div>
+        </section>
+      </div>
+      <footer className="text-center absolute bottom-2 font-serif">©2023 suzuneu All rights reserved.</footer>
     </div>
   );
 };

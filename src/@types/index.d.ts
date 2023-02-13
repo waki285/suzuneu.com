@@ -1,4 +1,4 @@
-declare module "*.png";
+declare module "*.webp";
 
 interface Window {
   admaxads?: { admax_id: string, type: string }[];

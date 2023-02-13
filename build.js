@@ -22,7 +22,7 @@ const isDev = process.argv.includes("--dev") || process.env.NODE_ENV === "develo
     external: ["tailwindcss", "autoprefixer"],
     logLevel: "info",
     loader: {
-      ".png": "file",
+      ".webp": "file",
     },
     plugins: [
       sassPlugin({
