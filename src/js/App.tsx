@@ -197,7 +197,7 @@ export default function App() {
         <section className="mr-12 my-8 wow animate__animated animate__slideInRight">
           <div className="relative max-w-md">
             <h1 className="font-title text-4xl whitespace-nowrap">{LANG[lang].noWriteContent}</h1>
-            <div className="font-sans text-lg">{LANG[lang].nowriteContent}</div>
+            <div className="font-sans text-lg">{LANG[lang].noWriteContent}</div>
           </div>
         </section>
       </div>
