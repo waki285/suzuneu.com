@@ -8,6 +8,7 @@ import Discord from "../assets/discord.webp";
 import GitHubLight from "../assets/githublight.webp";
 import GitHubDark from "../assets/githubdark.webp";
 import Mail from "../assets/mail.webp";
+import MailDark from "../assets/maildark.webp";
 import WOW from "wow.js";
 
 import EN from "../locales/en";
@@ -194,7 +195,7 @@ export default function App() {
             <div className="font-sans text-lg">{LANG[lang].d["makeDesc"]}</div>
           </div>
         </section>
-        <section className="mr-12 my-8 wow animate__animated animate__slideInRight">
+        <section className="justify-end mr-12 my-8 wow animate__animated animate__slideInRight">
           <div className="relative max-w-md">
             <h1 className="font-title text-4xl whitespace-nowrap">{LANG[lang].noWriteContent}</h1>
             <div className="font-sans text-lg">{LANG[lang].noWriteContent}</div>

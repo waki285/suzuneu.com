@@ -11,5 +11,5 @@ export default {
     makeTitle: (<>Make something <wbr />useful things.</>),
     makeDesc: (<><p>I am a student who likes programming.</p><p>This site is a collection of things I have made.</p><p>I want to make something that helps people.</p></>)
   },
-  noWriteContent: "No content to write.",
+  noWriteContent: <>I can't think of <wbr />what to write.</>,
 } as const;
