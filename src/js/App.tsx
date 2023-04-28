@@ -150,7 +150,7 @@ export default function App() {
             <AdMax id="41cbc3496969abfd577aebf2ca1c3e4e" type="banner" />
           </MobileView>
           {/*<AdMax id="94b8cd835ad3a0aa5ce7aea59ed08304" type="overlay" />*/}
-          <div className="w-[400px] h-[500px] bg-white dark:bg-black dark:text-white rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.2)] flex flex-col items-center animate__animated animate__fadeInUp">
+          <div className="w-[400px] h-[500px] max-w-[90vw] bg-white dark:bg-black dark:text-white rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.2)] flex flex-col items-center animate__animated animate__fadeInUp">
             <div>
               <h1 className="font-bold text-4xl my-4">{LANG[lang]["suzuneu"]}</h1>
             </div>
