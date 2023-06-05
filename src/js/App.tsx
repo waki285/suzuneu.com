@@ -164,7 +164,7 @@ export default function App() {
                 </A>
                 <div className="relative cursor-pointer inline-block group">
                   <img src={Discord} width={30} alt="Discord" />
-                  <span className="m-0 p-1 hidden absolute text-xs leading-6 text-white dark:text-black rounded-lg bg-black dark:bg-white before:absolute before:top-full before:content-[''] before:left-1/2 group-hover:before:border-solid group-hover:before:border-[15px] group-hover:before:border-transparent group-hover:before:border-t-black dark:group-hover:before:border-t-white group-hover:before:ml-[-15px] group-hover:inline-block group-hover:top-[-50px] group-hover:left-[-40px] w-max">すずねーう#8888</span>
+                  <span className="m-0 p-1 hidden absolute text-xs leading-6 text-white dark:text-black rounded-lg bg-black dark:bg-white before:absolute before:top-full before:content-[''] before:left-1/2 group-hover:before:border-solid group-hover:before:border-[15px] group-hover:before:border-transparent group-hover:before:border-t-black dark:group-hover:before:border-t-white group-hover:before:ml-[-15px] group-hover:inline-block group-hover:top-[-50px] group-hover:left-[-40px] w-max">テスト用アカウント#2929</span>
                 </div>
                 <A href="https://github.com/waki285">
                   <img src={darkMode ? GitHubDark:GitHubLight} width={30} alt="GitHub" />
