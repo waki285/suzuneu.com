@@ -181,6 +181,8 @@ export default function App() {
                   <li><A href="https://pastedeck.suzuneu.com">Pastedeck</A></li>
                   <li><A href="https://miq.suzuneu.com">MakeItAQuote Discord</A></li>
                   <li><A href="https://rdtools.suzuneu.com">Random Dice Tools</A></li>
+                  <li><A href="https://leakord.suzuneu.com">Leakord</A></li>
+                  <li><A href="https://rdtools.suzuneu.com">Random Dice Tools</A></li>
                 </ul>
               </div>
             </div>
